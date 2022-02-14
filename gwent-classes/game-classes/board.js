@@ -14,4 +14,18 @@ export default class Board {
         this.distant.goodWeather();
         this.siege.goodWeather();
     }
+    mostPowerfulCards() {
+       let res = [this.melee.mostPowerfulCards(), this.distant.mostPowerfulCards(), this.siege.mostPowerfulCards()];
+       let power = 0;
+       let cards = [];
+       res.forEach(item => {
+           if(item.power > power){
+               power = item.power;
+               cards = item.cards;
+           }
+           else if(item.power === power){
+               cards = cards.concat(item.cards);
+           }
+       });
+    }
 }
