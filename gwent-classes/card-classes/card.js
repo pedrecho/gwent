@@ -1,5 +1,7 @@
 export default class Card {
-    constructor(place) {
+    constructor(name, place, faction, img) {
+        this.name = name;
+        this.img = img;
         this.place = place;
     }
     canPlace(slot) {

@@ -3,5 +3,6 @@ export default class Game {
         this.first = first;
         this.second = second;
         this.rounds = [0, 0];
+
     }
 }

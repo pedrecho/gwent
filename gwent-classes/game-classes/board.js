@@ -1,5 +1,16 @@
 import Row from './row';
 
+
+function defineRow(place) {
+    if(place === 'melee')
+        return this.melee;
+    if(place === 'distant')
+        return this.distant;
+    if(place === 'siege')
+        return this.siege;
+}
+
+
 export default class Board {
     constructor() {
         this.melee = new Row();
@@ -27,5 +38,14 @@ export default class Board {
                cards = cards.concat(item.cards);
            }
        });
+    }
+    putCard(card, place) {
+        defineRow(place).addCard(card);
+    }
+    removeCard(number, place) {
+        return defineRow(place).giveCard(number);
+    }
+    clear() {
+        return this.melee.clear() + this.distant.clear() + this.siege.clear();
     }
 }

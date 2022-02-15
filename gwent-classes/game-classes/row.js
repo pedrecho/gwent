@@ -38,4 +38,7 @@ export default class Row {
         else
             this.special.addCard(card);
     }
+    clear() {
+        return this.warrior.clear() + this.special.clear();
+    }
 }

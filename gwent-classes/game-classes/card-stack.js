@@ -1,3 +1,5 @@
+import SpecialCard from "../card-classes/special-сard";
+
 export default class CardStack {
     constructor() {
         this.cards = new Array();
@@ -16,5 +18,28 @@ export default class CardStack {
     }
     addCard(item) {
         this.cards.push(item)
+    }
+    clear() {
+        let cards = this.cards;
+        this.cards = [];
+        return cards;
+    }
+    sort() {
+        this.cards.sort(function (a, b) {
+            if(a instanceof SpecialCard) {
+                if (b instanceof SpecialCard) {
+                    return 0;
+                }
+                else {
+                    return 1;
+                }
+            }
+            else if (b instanceof  SpecialCard) {
+                return -1;
+            }
+            else {
+                return a.power.base - b.power.base;
+            }
+        });
     }
 }
