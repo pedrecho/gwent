@@ -8,10 +8,10 @@ export default class SpecialStack extends CardStack {
     addCard(item) {
         if(!this.cards.includes(item)) super.addCard(item)
     }
-    goodWeather() {
-        //TODO;
-        let number = this.cards.indexOf(item => item instanceof BadWeatherCard);
-        if(number != -1)
-            this.cards.splice(number, 1);
-    }
+    // goodWeather() {
+    //     //TODO;
+    //     let number = this.cards.indexOf(item => item instanceof BadWeatherCard);
+    //     if(number != -1)
+    //         this.cards.splice(number, 1);
+    // }
 }

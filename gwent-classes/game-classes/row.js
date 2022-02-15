@@ -12,9 +12,9 @@ export default class Row {
         this.warrior.forEach(item => power += item.power.current);
         return power;
     }
-    goodWeather() {
-        this.special.goodWeather();
-    }
+    // goodWeather() {
+    //     this.special.goodWeather();
+    // }
     mostPowerfulCards() {
         let power = 0
         let cards = [];

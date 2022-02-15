@@ -1,21 +1,37 @@
 import SpecialCard from "./special-сard";
+import Card from "./card";
 
 function deleteCards(cards) {
     cards.forEach(item => delete(item));
 }
 
 export default class ExecutionCard extends SpecialCard {
-    action(board1, board2) {
-        let res1 = board1.mostPowerfulCards();
-        let res2 = board2.mostPowerfulCards();
-        if(res1.power > res2.power){
-            deleteCards(res1.cards);
+    playCard(player1, player2) { //удаляет самые сильные карты с поля;
+        let res1 = ExecutionCard.action1(player1.board);
+    }
+    static action1(board) {
+        return{
+            melee: this.action2(board.melee),
+            distant: this.action2(board.distant),
+            siege: this.action2(board.siege)
         }
-        else if(res1.power < res2.power){
-            deleteCards(res2.cards);
+    }
+    static action2(row) {
+        let warriors = row.warrior;
+        let power = 0;
+        let cards = []
+        for(let i = 0; i < warriors.length; ++i){
+            if(warriors[i].power.current > power){
+                power = warriors[i].power.current;
+                cards = [i];
+            }
+            else if(warriors[i].power.current === power){
+                cards.push(i);
+            }
         }
-        else {
-            deleteCards(res1.cards(res2.cards()));
+        return {
+            power: power,
+            cards: cards
         }
     }
 }

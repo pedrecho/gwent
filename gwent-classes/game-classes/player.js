@@ -3,8 +3,8 @@ import CardStack from "./card-stack";
 import WarriorCard from "../card-classes/warrior-card";
 
 export default class Player {
-    constructor(faction, leader, deck) {
-        this.facion = faction;
+    constructor(realm, leader, deck) {
+        this.realm = realm;
         this.leader = leader;
         this.deck = deck;
         this.deck.shuffle();
@@ -30,11 +30,14 @@ export default class Player {
     cardToEnd(card) {
         this.end.addCard(card);
     }
-    boardToEnd() {
+    clearBoard() {
         let cards = this.board.clear();
         cards.forEach(item => {
             if(item instanceof WarriorCard && !item.isHero)
                 this.end.addCard(item);
         });
     }
+    // goodWeather() {
+    //     this.board.goodWeather();
+    // }
 }
