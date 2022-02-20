@@ -13,7 +13,6 @@ const io = new Server(server);
 
 app.set('view engine', 'ejs');
 app.use('/public', express.static('public'));
-app.use('/socket.io', express.static('node_modules/socket.io'));
 
 
 let users = [];
@@ -35,9 +34,16 @@ app.post('/', (req, res) => {
    res.render('game')
 });
 
+
+
 io.on('connection', (socket) => {
     console.log('+jopa');
 });
 
-app.listen(8080);
+
+server.listen(8080, () => {
+    console.log('listening on *:8080');
+});
+
+// app.listen('8080');
 
