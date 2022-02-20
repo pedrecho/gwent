@@ -1,20 +1,32 @@
 import SpecialCard from "./special-сard";
 
 export default class BadWeatherCard extends SpecialCard {
-    playCard(player1, player2) {
-        BadWeatherCard.action1(player1.board);
-        BadWeatherCard.action1(player2.board);
+    playCard(player1, player2, place) {
+        super.playCard(player1, player2, place);
+        super.playCard(player2, player1, place);
+        // this.action1(player1.board);
+        // this.action1(player2.board);
     }
-    static action1(board) {
-        this.action2(board.melee);
-        this.action2(board.distant);
-        this.action2(board.siege);
-    }
-    static action2(row) {
-        let warriors = row.warrior;
-        warriors.forEach(item => {
-            if(item.isHero === false)
+    ability(row) {
+        row.warrior.forEach(item => {
+            if(!item.isHero)
                 item.power.current = 1;
         });
     }
+    // action1(board) {
+    //     switch(this.place) {
+    //         case 'melee':
+    //             this.action2(board.melee);
+    //             break;
+    //         case 'distant':
+    //             this.action2(board.distant);
+    //             break;
+    //         case 'siege':
+    //             this.action2(board.siege);
+    //             break;
+    //     }
+    // }
+    // action2(row) {
+    //     row.special.add(this);
+    // }
 }

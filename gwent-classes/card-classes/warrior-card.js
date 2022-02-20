@@ -1,7 +1,7 @@
 import Card from './card';
 
 export default class WarriorCard extends Card {
-    constructor(name, place, img, realm, power, isHero) {
+    constructor(name, place, description, img, realm, power, isHero, type) {
         super(name, place, img);
         this.realm = realm; //color
         this.power.base = power;

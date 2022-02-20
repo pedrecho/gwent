@@ -12,9 +12,18 @@ export default class Player {
         this.end = new CardStack();
         this.board = new Board();
     }
+    // takeCard() {
+    //     this.hand.addCard(this.deck.giveRandCard());
+    // }
+    moveRandCard(to, from) {
+        to.addCard(from.giveRandCard())
+    }
+    moveCard(to, from, number) {
+        to.addCard(from.giveCard(number))
+    }
     receiveHand() {
         for(let i = 0; i < 10; ++i)
-            this.hand.addCard(this.deck.giveRandCard());
+            this.moveRandCard(this.hand, this.deck);
     }
     changeCard(number) {
         let card = this.deck.giveRandCard();

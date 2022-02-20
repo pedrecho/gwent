@@ -6,8 +6,9 @@ function deleteCards(cards) {
 }
 
 export default class ExecutionCard extends SpecialCard {
-    playCard(player1, player2) { //удаляет самые сильные карты с поля;
+    playCard(player1, player2, place) { //удаляет самые сильные карты с поля; //TODO; доделать
         let res1 = ExecutionCard.action1(player1.board);
+        let res2 = ExecutionCard.action1(player2.board);
     }
     static action1(board) {
         return{

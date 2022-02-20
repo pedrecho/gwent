@@ -1,13 +1,16 @@
 import SpecialCard from "./special-сard";
+import BadWeatherCard from "./bad-weather-card";
 
 export default class GoodWeatherCard extends SpecialCard {
-    playCard(player1, player2) {
-        GoodWeatherCard.action(player1.board);
-        GoodWeatherCard.action(player2.board);
+    playCard(player1, player2, place) {
+        GoodWeatherCard.action1(player1.board);
+        GoodWeatherCard.action1(player2.board);
     }
-    static action(row) {
-        let warriors = row.warrior;
-        warriors.forEach(item => item.power.current = item.power.base);
+    static action1(row) { //TODO; придумать что-нибудь лучше action1
+        let special = row.special;
+        let res = special.indexOf(item => item instanceof BadWeatherCard);
+        if(res !== -1)
+            special.slice(res, res + 1);
     }
     canPlace() {
         return true;

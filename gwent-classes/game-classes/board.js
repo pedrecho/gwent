@@ -20,11 +20,11 @@ export default class Board {
     power() {
         return this.melee.power() + this.distant.power() + this.siege.power();
     }
-    goodWeather() {
-        this.melee.goodWeather();
-        this.distant.goodWeather();
-        this.siege.goodWeather();
-    }
+    // goodWeather() {
+    //     this.melee.goodWeather();
+    //     this.distant.goodWeather();
+    //     this.siege.goodWeather();
+    // }
     mostPowerfulCards() {
        let res = [this.melee.mostPowerfulCards(), this.distant.mostPowerfulCards(), this.siege.mostPowerfulCards()];
        let power = 0;

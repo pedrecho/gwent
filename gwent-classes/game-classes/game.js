@@ -14,4 +14,7 @@ export default class Game {
         this.second.clearBoard();
         //TODO; сделать пассивки фракций
     }
+    playCard(card) {
+        card.playCard();
+    }
 }
