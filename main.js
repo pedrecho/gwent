@@ -13,12 +13,15 @@ const io = new Server(server);
 
 app.set('view engine', 'ejs');
 app.use('/public', express.static('public'));
+app.use('/views', express.static('views'));
 
 
 let users = [];
 
 app.get('/', (req, res) => {
-   res.render('login')
+   res.render('index', {
+       usernameAlreadySelected: false,
+   })
 });
 
 
@@ -34,12 +37,28 @@ app.post('/', (req, res) => {
    res.render('game')
 });
 
-
+let b = true;
 
 io.on('connection', (socket) => {
-    console.log('+jopa');
+    // console.log();
+    socket.on('disconnect', () => {
+        // console.log('-' + socket.conn.remoteAddress);
+    });
+    socket.on('click', () => {
+        b = !b;
+        io.emit('click', b);
+    });
 });
 
+io.use((socket, next) => {
+    const username = socket.handshake.auth.username;
+    if (!username) {
+        return next(new Error("invalid username"));
+    }
+    console.log('+ ' + username + ' | ' + socket.conn.remoteAddress)
+    socket.username = username;
+    next();
+});
 
 server.listen(8080, () => {
     console.log('listening on *:8080');
